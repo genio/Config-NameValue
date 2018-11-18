@@ -112,7 +112,7 @@ throws_ok { $c->set  } qr/Nothing loaded/,  'caught bad set attempt';
 explain 'Empty config objected created: ', $c = Config::NameValue->new();
 cmp_deeply( $c, noclass( {} ), 'object has expected data' );
 
-throws_ok { $c->load( $bad_config ) } qr/read_file '\Q$bad_config\E' - sysopen: No such file or directory/, 'bad filename caught';
+throws_ok { $c->load( $bad_config ) } qr/read_file '\Q$bad_config\E' - (?:sys)?open: No such file or directory/, 'bad filename caught';
 
 explain 'Config object loaded: ', $c->load( $test_config );
 cmp_deeply( $c, noclass( $expected ), 'object has expected data' );
@@ -152,4 +152,3 @@ is( $c->error(), "$bad_name does not exist", 'caught bad name' );
 
 #############################################################################
 # sub set
-
